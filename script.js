@@ -1,5 +1,5 @@
 function playJumpscare() {
-    document.body.innerHTML = ''; // Clear the page
+    document.body.innerHTML = ''; 
     const video = document.createElement('video');
     video.src = 'https://raw.githubusercontent.com/scrinshoted/scrinshoted.github.io/main/media/video.mp4';
     video.autoplay = true;
@@ -9,7 +9,6 @@ function playJumpscare() {
     document.body.appendChild(video);
     video.play();
 
-    // Attempt to enter fullscreen
     const enterFullscreen = () => {
         if (document.documentElement.requestFullscreen) {
             document.documentElement.requestFullscreen();
