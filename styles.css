@@ -3,12 +3,12 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: white; /* White background for the page */
-    overflow: hidden; /* Disable scrolling when jumpscare starts */
+    background-color: white; 
+    overflow: hidden; 
     display: flex;
-    justify-content: center; /* Center the cookie popup horizontally */
-    align-items: center; /* Center the cookie popup vertically */
-    height: 100vh; /* Make the body take up the full viewport height */
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
 }
 
 .cookie-popup {
