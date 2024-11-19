@@ -3,42 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jumpscare</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-    </style>
+    <title>Cookie Consent</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <script>
-        (function(){
-            document.title='jumpscare';
-            document.body.innerHTML='';
-            let v=document.createElement('video');
-            v.src='https://raw.githubusercontent.com/scrinshoted/scrinshoted.github.io/main/media/video.mp4';
-            v.style.position='fixed';
-            v.style.top=0;
-            v.style.left=0;
-            v.style.width='100vw';
-            v.style.height='100vh';
-            v.style.objectFit='cover';
-            v.style.zIndex=9999;
-            v.autoplay=true;
-            v.loop=true;
-            v.muted=false;
-            v.controls=false;
-            document.body.appendChild(v);
-            if(document.documentElement.requestFullscreen){
-                document.documentElement.requestFullscreen();
-            }else if(document.documentElement.webkitRequestFullscreen){
-                document.documentElement.webkitRequestFullscreen();
-            }else if(document.documentElement.msRequestFullscreen){
-                document.documentElement.msRequestFullscreen();
-            }
-            window.onbeforeunload=()=> 'Are you sure you want to leave this page? Changes may not be saved.';
-        })();
-    </script>
+    <div id="cookie-popup" class="cookie-popup">
+        <p class="main-text">Cookies and user-generated content</p>
+        <p class="sub-text">This website uses cookies to offer you the most relevant information and better understand how you use this website. Please accept cookies for optimal performance.</p>
+        <div class="cookie-buttons">
+            <button id="accept-btn" class="btn accept-btn">Accept</button>
+            <button id="decline-btn" class="btn decline-btn">Decline</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
