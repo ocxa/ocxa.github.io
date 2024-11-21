@@ -1,20 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie Consent</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@evade | ocxa.github.io</title>
+  <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/profile.jpg" type="image/png">
 </head>
 <body>
-    <div id="cookie-popup" class="cookie-popup">
-        <p class="main-text">Cookies and user-generated content</p>
-        <p class="sub-text">This website uses cookies to offer you the most relevant information and better understand how you use this website. Please accept cookies for optimal performance.</p>
-        <div class="cookie-buttons">
-            <button id="accept-btn" class="btn accept-btn">Accept</button>
-            <button id="decline-btn" class="btn decline-btn">Decline</button>
+  <div id="enter-screen" class="enter-screen">
+    <div class="enter-text">click to enter...</div>
+  </div>
+
+  <div class="container" style="display: none;">
+    <video autoplay muted loop class="background-video">
+      <source src="assets/background.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="profile-container">
+      <div class="profile-card">
+        <img src="assets/profile.jpg" alt="Profile Picture" class="profile-picture">
+        <h1 class="username glowing-text">evade</h1>
+        <p class="description">certified dumbass</p>
+        <div class="icons">
+          <a href="https://www.roblox.com/users/1535111855/profile" target="_blank">
+            <img src="assets/icon1.svg" alt="Icon 1" class="icon">
+          </a>
+          <a href="https://discord.com/users/827437464414978069" target="_blank">
+            <img src="assets/icon2.png" alt="Icon 2" class="icon">
+          </a>
+          <a href="https://github.com/ocxa" target="_blank">
+            <img src="assets/icon3.png" alt="Icon 3" class="icon">
+          </a>
+          <a href="https://www.youtube.com/@ihatenggas" target="_blank">
+            <img src="assets/icon4.png" alt="Icon 4" class="icon">
+          </a>
+          <a href="https://open.spotify.com/user/31njven35iexg3hctxbuyzax7" target="_blank">
+            <img src="assets/icon5.png" alt="Icon 5" class="icon">
+          </a>
         </div>
+      </div>
     </div>
-    <script src="script.js"></script>
+  </div>
+
+  <audio id="background-audio" loop>
+    <source src="assets/audio.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <script src="script.js"></script>
 </body>
 </html>

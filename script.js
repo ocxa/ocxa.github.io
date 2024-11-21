@@ -1,31 +1,30 @@
-function playJumpscare() {
-    document.body.innerHTML = ''; // Clear the page
-    const video = document.createElement('video');
-    video.src = 'https://raw.githubusercontent.com/scrinshoted/scrinshoted.github.io/main/media/video.mp4';
-    video.autoplay = true;
-    video.loop = true;
-    video.muted = false;
-    video.controls = false;
-    document.body.appendChild(video);
-    video.play();
+// Wait until the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+  const enterScreen = document.getElementById("enter-screen");
+  const container = document.querySelector(".container");
+  const backgroundVideo = document.querySelector(".background-video");
+  const audio = document.getElementById("background-audio");
 
-    // Attempt to enter fullscreen
-    const enterFullscreen = () => {
-        if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen();
-        } else if (document.documentElement.webkitRequestFullscreen) {
-            document.documentElement.webkitRequestFullscreen();
-        } else if (document.documentElement.msRequestFullscreen) {
-            document.documentElement.msRequestFullscreen();
-        }
-    };
-    enterFullscreen();
-}
+  // Ensure the enter screen and container exist
+  if (enterScreen && container && backgroundVideo) {
+    enterScreen.addEventListener("click", () => {
+      // Hide the enter screen
+      enterScreen.style.display = "none";
 
-document.getElementById('accept-btn').addEventListener('click', () => {
-    playJumpscare();
-});
+      // Show the main container
+      container.style.display = "flex";
 
-document.getElementById('decline-btn').addEventListener('click', () => {
-    playJumpscare();
+      // Remove blur from background video
+      backgroundVideo.style.filter = "none";
+
+      // Play audio if it exists
+      if (audio) {
+        audio.play().catch((err) => {
+          console.error("Audio playback failed:", err);
+        });
+      }
+    });
+  } else {
+    console.error("Missing DOM elements. Check your HTML structure.");
+  }
 });
